@@ -1,8 +1,7 @@
 # TRS2-Speech-Board
 This is a mod for adding speech to TRS2 Arcade PCBs. These do not natively support speech like the TRS1 PCB sets which utilized a M58817 speech IC. The TRS2 speech board utilizes a Raspberry Pi Pico 2 equipped with CircuitPython to play speech samples from one of four pre-programmed speech sets.
 
-### Demo Video
-[![Demo Video](https://img.youtube.com/vi/-4g9nGpEcIQ/0.jpg)](https://www.youtube.com/watch?v=-4g9nGpEcIQ)
+[Demo Video](https://www.youtube.com/watch?v=-4g9nGpEcIQ)
 
 ## Installation Instructions
 Coming Soon
@@ -58,8 +57,12 @@ Two ways have been provided for patching the original TRS2 sound ROM: A hardware
 ### Hardware Patch
 The hardware patch is a simple board in which the original sound rom is plugged into a daughterboard which is then plugged into the original ROM socket. It works by switching which chip outputs code at certain addresses. Essentially making it a hardware patch.
 
-1. Assemble (if not done so) the PCB like in the images.
-2. 
+1. Program the GAL22V10 with the "TRS2-Patch-Romless.jed" file
+2. Assemble (if not done so) the PCB like in the image below
+3. Insert it into the 3I socket on the ROM board, minding the pin 1 markets
+
+![Hardware Patch PCB](Images/HardwarePatchPCB.jpg)
+![Hardware Patch PCB Installed](Images/HardwarePatchInstalled.jpg)
 
 ### Software Patch
 In case that one doesn't want to use the daughterboard, a new single rail 2716 EPROM can be burned using a patched ROM file that replaces the original at 3I.
