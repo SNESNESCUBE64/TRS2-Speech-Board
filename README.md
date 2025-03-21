@@ -46,6 +46,9 @@ The dip switch options can be used to change how certain aspects of the speech b
 ### Schematics
 ![Schematics](Images/TRS2VoiceSchematics.svg)
 
+### Render (to be replaced with final PCB design images)
+![PCB Render](Images/SpeechBoardRender.png)
+
 ## Speech Board Tester Hardware
 This is just a Jamma adapter that was used to provide an easy hookup to a test bench for power and the speaker. It was used for testing the speech board when the algorithm was still being developed. It serves no real purpose now that the code has been developed but is being provided anyway. 
 
