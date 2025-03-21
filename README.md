@@ -1,14 +1,16 @@
 # TRS2-Speech-Board
 This is a mod for adding speech to TRS2 Arcade PCBs. These do not natively support speech like the TRS1 PCB sets which utilized a M58817 speech IC. The TRS2 speech board utilizes a Raspberry Pi Pico 2 equipped with CircuitPython to play speech samples from one of four pre-programmed speech sets.
 
+### Demo Video
+[![Demo Video](https://img.youtube.com/vi/-4g9nGpEcIQ/0.jpg)](https://www.youtube.com/watch?v=-4g9nGpEcIQ)
+
 ## Installation Instructions
+Coming Soon
 
 ## Controls and Adjustments
 There are two buttons, volume adjustment, and a set of 8 dip switches. 
 
-The "Test" button brings the speech module into a self test mode in which it plays all the speech clips in the set. You can exit the speech test early by pressing the test button again. If hooked up to a python terminal, it also print out information about the state of the dip switches and databus. If the expansion dip switch is enabled it will enter in an expansion lamp test mode. To exit that test mode, press the test button again.
-
-The "Reset" button does exactly as it says. When pressed, it resets the module to the start of the program. The volume can be adjusted by turning the knob labeled "voice volume". 
+The "Test" button brings the speech module into a self test mode in which it plays all the speech clips in the set. You can exit the speech test early by pressing the test button again. If hooked up to a python terminal, it also print out information about the state of the dip switches and databus. If the expansion dip switch is enabled it will enter in an expansion lamp test mode. To exit that test mode, press the test button again. The "Reset" button does exactly as it says. When pressed, it resets the module to the start of the program. The volume can be adjusted by turning the knob labeled "voice volume". 
 
 The dip switch options can be used to change how certain aspects of the speech board behaves. *For stock operation: all dip switch settings should be set to "off"*. The muted option puts the board in a state in which it will not play any audio. The speech set setting changes with set of samples plays. Set 0 is the original set. Start up sound plays a clip when the module is activated on bootup. Engine Trouble Delay is just how much time passes between each time the "Engine Trouble" voice line is played. If desired the "Engine Trouble" line can be disabled. The last option is the Expansion enable. Because there were extra pins available, code was written to support a lamp display that is based on game conditions. Turning it on 
 
@@ -56,13 +58,17 @@ Two ways have been provided for patching the original TRS2 sound ROM: A hardware
 ### Hardware Patch
 The hardware patch is a simple board in which the original sound rom is plugged into a daughterboard which is then plugged into the original ROM socket. It works by switching which chip outputs code at certain addresses. Essentially making it a hardware patch.
 
+1. Assemble (if not done so) the PCB like in the images.
+2. 
+
 ### Software Patch
 In case that one doesn't want to use the daughterboard, a new single rail 2716 EPROM can be burned using a patched ROM file that replaces the original at 3I.
 
 1. Dump the sound ROM located at 3I 
-2. Patch the sound ROM with the trs2s3i.ips patch file using LunarIps
-3. Burn the new ROM onto a 2716 EPROM
-4. Replace the sound ROM located at 3I with the patched ROM
+2. Patch the sound ROM with the trs2s3i_SWPatch.ips patch file using LunarIps
+3. Verify that the sound ROM checksum is now *D068ED11*
+4. Burn the new ROM onto a 2716 EPROM
+5. Replace the sound ROM located at 3I with the patched ROM
 
 ### Patch Source Code 
 This code was written in 8035 assembly. The memory address 0x20 (unused in the game) now stores the speech bus state.
