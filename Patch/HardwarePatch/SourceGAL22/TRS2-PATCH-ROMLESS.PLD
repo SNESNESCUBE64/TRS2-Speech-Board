@@ -1,0 +1,82 @@
+Name     TRS2-Patch-Romless ;
+PartNo   00 ;
+Date     4/11/2024 ;
+Revision 01 ;
+Designer Engineer ;
+Company  Matt ;
+Assembly None ;
+Location  ;
+Device   G22V10 ;
+
+/* *************** INPUT PINS *********************/
+PIN 8    = A0                        ; /* Address Line Inputs             */ 
+PIN 7    = A1                        ; /*                                 */ 
+PIN 6    = A2                        ; /*                                 */ 
+PIN 5    = A3                        ; /*                                 */ 
+PIN 4    = A4                        ; /*                                 */ 
+PIN 3    = A5                        ; /*                                 */ 
+PIN 2    = A6                        ; /*                                 */ 
+PIN 1    = A7                        ; /*                                 */ 
+PIN 11   = A8                        ; /*                                 */
+PIN 10   = A9                        ; /*                                 */ 
+PIN 9    = A10                       ; /*                                 */
+PIN 13   = !CE_IN                     ; /* Chip Enable In                  */ 
+
+/* ************** OUTPUT PINS *********************/
+PIN 23   =  !CE2                     ; /* Original ROM Chip Enable        */ 
+PIN 22   =  !CE1                     ; /* Patched ROM Chip Enable         */ 
+PIN 16   =  D0                       ; /* Data bit 0                      */ 
+PIN 15   =  D1                       ; /* Data bit 1                  */ 
+PIN 14   =  D2                       ; /* Data bit 2                  */ 
+PIN 17   =  D3                       ; /* Data bit 3                  */ 
+PIN 18   =  D4                       ; /* Data bit 4                 */ 
+PIN 19   =  D5                       ; /* Data bit 5                  */ 
+PIN 20   =  D6                       ; /* Data bit 6                  */ 
+PIN 21   =  D7                       ; /* Data bit 7                  */ 
+
+/* VARIABLE DEFINITION */
+Field address = [A10..0];
+Field byte = [D7..0];
+
+/* ************** SOURCE CODE *********************/
+
+table address => byte {
+104 => 54;
+105 => A0;
+2A0 => 53;
+2A1 => 0F;
+2A2 => A8;
+2A3 => 0A;
+2A4 => 53;
+2A5 => 20;
+2A6 => 77;
+2A7 => 48;
+2A8 => 02;
+2A9 => 53;
+2AA => 0F;
+2AB => B8;
+2AC => 20;
+2AD => 83;
+2B0 => BF;
+2B1 => 60;
+2B2 => 80;
+2B3 => 37;
+2B4 => 43;
+2B5 => 10;
+2B6 => 02;
+2B7 => 83;
+614 => 54;
+615 => B0;
+}
+
+CE1 = (!A10 & !A9 & A8 & !A7 & !A6 & !A5 & !A4 & !A3 & A2 & !A1) # (A10 & A9 & !A8 & !A7 & !A6 & !A5 & A4 & !A3 & A2 & !A1) # (!A10 & A9 & !A8 & A7 & !A6 & A5);
+CE2 = !CE1 ;
+
+D7.oe = CE1 & CE_IN;
+D6.oe = CE1 & CE_IN;
+D5.oe = CE1 & CE_IN;
+D4.oe = CE1 & CE_IN;
+D3.oe = CE1 & CE_IN;
+D2.oe = CE1 & CE_IN;
+D1.oe = CE1 & CE_IN;
+D0.oe = CE1 & CE_IN;
