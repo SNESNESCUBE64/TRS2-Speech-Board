@@ -4,7 +4,9 @@ This is a mod for adding speech to TRS2 Arcade PCBs. These do not natively suppo
 [Demo Video](https://www.youtube.com/watch?v=-4g9nGpEcIQ)
 
 ## Installation Instructions
-Coming Soon
+Proper written installation instructions coming soon.
+
+[Video Tutorial](https://youtu.be/8o_55nDMGbg?si=-cQZ4i4qdC0Jirtd)
 
 ## Controls and Adjustments
 There are two buttons, volume adjustment, and a set of 8 dip switches. 
